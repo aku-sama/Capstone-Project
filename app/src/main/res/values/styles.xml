@@ -32,7 +32,27 @@
     <style name="ButtonGreen" parent="Base.TextAppearance.AppCompat.Button">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:background">@drawable/button_green</item>
+    </style>
+
+    <style name="ButtonPin" parent="Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored">
+        <item name="android:layout_width">@dimen/button_pin_size</item>
+        <item name="android:layout_height">@dimen/button_pin_size</item>
+        <item name="android:background">@drawable/button_pin</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginTop">@dimen/gap_16</item>
+        <item name="android:layout_marginLeft">@dimen/gap_12</item>
+        <item name="android:layout_marginRight">@dimen/gap_12</item>
+    </style>
+
+    <style name="HeaderText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="SubheaderText" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
     </style>
 </resources>

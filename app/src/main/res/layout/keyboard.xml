@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="3"
+    tools:background="@color/white">
+
+    <Button
+        android:id="@+id/key1"
+        style="@style/ButtonPin"
+        android:text="1" />
+
+    <Button
+        android:id="@+id/key2"
+        style="@style/ButtonPin"
+        android:text="2" />
+
+    <Button
+        android:id="@+id/key3"
+        style="@style/ButtonPin"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/key4"
+        style="@style/ButtonPin"
+        android:text="4" />
+
+    <Button
+        android:id="@+id/key5"
+        style="@style/ButtonPin"
+        android:text="5" />
+
+    <Button
+        android:id="@+id/key6"
+        style="@style/ButtonPin"
+        android:text="6" />
+
+    <Button
+        android:id="@+id/key7"
+        style="@style/ButtonPin"
+        android:text="7" />
+
+    <Button
+        android:id="@+id/key8"
+        style="@style/ButtonPin"
+        android:text="8" />
+
+    <Button
+        android:id="@+id/key9"
+        style="@style/ButtonPin"
+        android:text="9" />
+
+    <ImageButton
+        android:id="@+id/keyDel"
+        style="@style/ButtonPin"
+        android:layout_marginBottom="@dimen/gap_16"
+        android:src="@drawable/ic_clear_gray" />
+
+    <Button
+        android:id="@+id/key0"
+        style="@style/ButtonPin"
+        android:layout_marginBottom="@dimen/gap_16"
+        android:text="0" />
+
+    <ImageButton
+        android:id="@+id/keyBackspace"
+        style="@style/ButtonPin"
+        android:layout_marginBottom="@dimen/gap_16"
+        android:src="@drawable/ic_backspace_gray" />
+</GridLayout>
