@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ExpTracker</string>
+    <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
+
+    <!-- sign in -->
+    <string name="login_name">Name</string>
+    <string name="login_phone">Mobile phone</string>
+    <string name="login_password">Password</string>
+    <string name="login_register_button">register</string>
 </resources>

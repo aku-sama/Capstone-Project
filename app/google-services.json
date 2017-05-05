@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1050041130959",
+    "project_id": "principal-oxide-136623"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050041130959:android:1f1dfe429aee31db",
+        "android_client_info": {
+          "package_name": "raspopova.diana.exptracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050041130959-r9khtqsah5qphpcesgr1qblnq6n3tfb4.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "raspopova.diana.exptracker",
+            "certificate_hash": "164171713e5ba3e379d526a232fa4319e6c2082c"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiH3KJ_QcByZTzkEptAaiJwzQZhw21E3M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
