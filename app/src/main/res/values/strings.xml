@@ -7,6 +7,9 @@
     <string name="login_phone">Mobile phone</string>
     <string name="login_password">Password</string>
     <string name="login_register_button">register</string>
+    <!-- PIN -->
     <string name="set_pin_title">Set your PIN</string>
     <string name="set_pin_message">setup 4-digits code for\nprotecting your app data</string>
+    <string name="enter_pin_title">Enter your PIN</string>
+    <string name="enter_pin_forgot_button"><u>forgot pin?</u></string>
 </resources>

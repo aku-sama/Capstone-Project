@@ -19,7 +19,7 @@
             android:layout_marginLeft="@dimen/gap_16"
             android:layout_marginRight="@dimen/gap_16"
             android:layout_marginTop="@dimen/gap_24"
-            android:text="@string/set_pin_title"
+            android:text="@string/enter_pin_title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,15 +36,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
-        <TextView
+        <Button
             android:id="@+id/forgetButton"
-            style="@style/SubheaderText"
+            style="@style/ButtonLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/gap_16"
             android:layout_marginRight="@dimen/gap_16"
             android:layout_marginTop="@dimen/gap_16"
-            android:text="@string/set_pin_message"
+            android:text="@string/enter_pin_forgot_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/indicators" />
