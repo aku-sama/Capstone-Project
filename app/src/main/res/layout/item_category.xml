@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/category_tail_size"
+    android:layout_height="@dimen/category_tail_size"
+    android:layout_margin="@dimen/gap_8"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="2dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/gap_4">
+
+    <TextView
+        android:id="@+id/categoryText"
+        style="@style/SubheaderText.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:drawableTop="@drawable/ic_car_white"
+        tools:text="Car" />
+
+</android.support.v7.widget.CardView>
