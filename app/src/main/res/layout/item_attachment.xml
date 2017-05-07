@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/gap_8"
+    android:layout_marginLeft="@dimen/gap_16"
+    android:layout_marginRight="@dimen/gap_16"
+    android:layout_marginTop="@dimen/gap_8"
+    android:background="@color/colorPrimaryDark"
+    android:gravity="center"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:padding="@dimen/gap_16">
+
+    <TextView
+        android:id="@+id/attacheTitle"
+        style="@style/SubheaderText.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:drawablePadding="@dimen/gap_16"
+        android:drawableStart="@drawable/ic_attach_file_white"
+        android:gravity="center_vertical"
+        tools:text="Photo_122243.jpg" />
+
+    <ImageView
+        android:id="@+id/deleteAttache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_weight="0.2"
+        android:src="@drawable/ic_delete_white" />
+</LinearLayout>
