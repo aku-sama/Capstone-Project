@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingLeft="@dimen/gap_16"
+    android:paddingRight="@dimen/gap_16"
+    android:paddingTop="@dimen/gap_24">
+
+    <ImageView
+        android:id="@+id/categoryLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/gap_16"
+        android:layout_marginEnd="@dimen/gap_32"
+        tools:src="@drawable/ic_pets_gray" />
+
+    <TextView
+        android:id="@+id/categoryText"
+        style="@style/HeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/gap_24"
+        android:layout_toEndOf="@+id/categoryLogo"
+        android:layout_toStartOf="@+id/amountText"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Pet" />
+
+    <TextView
+        android:id="@+id/amountText"
+        style="@style/HeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/gap_24"
+        android:layout_marginStart="@dimen/gap_16"
+        tools:text="150 $" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/categoryText"
+        android:layout_toEndOf="@id/categoryLogo"
+        android:background="@color/colorPrimary" />
+</RelativeLayout>

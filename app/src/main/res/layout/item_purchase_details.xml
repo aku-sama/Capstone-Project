@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:orientation="vertical">
+    android:minHeight="?android:attr/listPreferredItemHeight">
 
     <ImageView
         android:id="@+id/categoryImage"
@@ -20,8 +19,8 @@
         android:layout_marginLeft="@dimen/gap_16"
         android:layout_marginRight="@dimen/gap_16"
         android:layout_marginTop="@dimen/gap_16"
-        android:layout_toLeftOf="@id/photoImage"
-        android:layout_toRightOf="@id/categoryImage"
+        android:layout_toLeftOf="@+id/photoImage"
+        android:layout_toRightOf="@+id/categoryImage"
         tools:text="156.06 $" />
 
     <TextView
@@ -31,7 +30,7 @@
         android:layout_marginLeft="@dimen/gap_16"
         android:layout_marginRight="@dimen/gap_16"
         android:layout_marginTop="@dimen/gap_4"
-        android:layout_toRightOf="@id/categoryImage"
+        android:layout_toRightOf="@+id/categoryImage"
         tools:text="06.05.2017" />
 
     <TextView
@@ -42,7 +41,7 @@
         android:layout_marginLeft="@dimen/gap_16"
         android:layout_marginRight="@dimen/gap_16"
         android:layout_marginTop="@dimen/gap_4"
-        android:layout_toRightOf="@id/categoryImage"
+        android:layout_toRightOf="@+id/categoryImage"
         android:ellipsize="end"
         android:maxLines="2"
         tools:text="lorem ipsum dollar" />

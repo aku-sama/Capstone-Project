@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="splash_top_padding">100dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="gap_16">16dp</dimen>
     <dimen name="gap_12">12dp</dimen>
     <dimen name="gap_4">4dp</dimen>
     <dimen name="gap_8">8dp</dimen>
+    <dimen name="gap_24">24dp</dimen>
+    <dimen name="gap_32">32dp</dimen>
+
+    <dimen name="splash_top_padding">100dp</dimen>
+    <dimen name="category_tail_size">100dp</dimen>
 
     <dimen name="button_height">56dp</dimen>
     <dimen name="button_pin_size">56dp</dimen>
     <dimen name="pin_indicator_size">24dp</dimen>
-    <dimen name="gap_24">24dp</dimen>
+    <dimen name="chart_size">220dp</dimen>
 
-    <dimen name="category_tail_size">100dp</dimen>
+
 </resources>
