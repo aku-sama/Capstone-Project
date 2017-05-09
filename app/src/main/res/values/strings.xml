@@ -3,10 +3,13 @@
     <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
 
     <!-- sign in -->
-    <string name="login_name">Name</string>
-    <string name="login_phone">Mobile phone</string>
+    <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_register_button">register</string>
+
+    <string name="login_email_error">Email is incorrect or empty</string>
+    <string name="login_password_error">Password length cannot be less than 6 symbols</string>
+
     <!-- PIN -->
     <string name="set_pin_title">Set your PIN</string>
     <string name="set_pin_message">setup 4-digits code for\nprotecting your app data</string>

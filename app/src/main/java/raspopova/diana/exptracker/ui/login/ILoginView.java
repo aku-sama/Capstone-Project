@@ -7,4 +7,10 @@ import raspopova.diana.exptracker.base.IGeneralView;
  */
 
 public interface ILoginView extends IGeneralView {
+
+    void emailValidationError();
+
+    void passwordValidationError();
+
+    void onLoginSuccess();
 }

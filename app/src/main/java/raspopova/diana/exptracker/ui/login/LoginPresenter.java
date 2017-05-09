@@ -7,4 +7,12 @@ import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
  */
 
 public class LoginPresenter extends MvpBasePresenter<ILoginView> {
+
+    public void onGoogleSignIn() {
+    }
+
+    public void onRegistration(String email, String password) {
+    }
+
+
 }

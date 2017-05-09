@@ -16,7 +16,7 @@
             layout="@layout/toolbar" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/nameInputLay"
+            android:id="@+id/emailInputLay"
             style="@style/TextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_marginRight="@dimen/gap_16"
             android:layout_marginStart="@dimen/gap_16"
             android:layout_marginTop="@dimen/gap_16"
-            android:hint="@string/login_name"
+            android:hint="@string/login_email"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appbar">
@@ -33,28 +33,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/phoneInputLay"
-            style="@style/TextInputStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/gap_16"
-            android:layout_marginLeft="@dimen/gap_16"
-            android:layout_marginRight="@dimen/gap_16"
-            android:layout_marginStart="@dimen/gap_16"
-            android:layout_marginTop="@dimen/gap_16"
-            android:hint="@string/login_phone"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameInputLay">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone" />
+                android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -70,7 +49,7 @@
             android:hint="@string/login_password"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneInputLay"
+            app:layout_constraintTop_toBottomOf="@+id/emailInputLay"
             app:passwordToggleEnabled="true">
 
             <EditText
