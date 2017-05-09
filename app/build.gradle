@@ -45,6 +45,13 @@ dependencies {
 
     //UNIT TEST
     testCompile 'junit:junit:4.12'
+
+    //MVP
+    compile 'com.hannesdorfmann.mosby3:viewstate:3.0.3' // MVP + ViewState support
+    compile 'com.hannesdorfmann.mosby3:mvp-lce:3.0.3'
+
+    //CONTENT PROVIDER
+    compile 'me.everything:providers-android:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

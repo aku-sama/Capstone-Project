@@ -15,4 +15,6 @@
 
 
     <string name="action_filter">Date Filter</string>
+    <string name="snack_bar_button">OK</string>
+    <string name="progress_text">waiting...</string>
 </resources>
