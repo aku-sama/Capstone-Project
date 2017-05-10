@@ -1,10 +1,14 @@
 package raspopova.diana.exptracker.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.widget.Button;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 
 import butterknife.BindView;
@@ -53,7 +57,7 @@ public class LoginActivity extends GeneralActivity<ILoginView, LoginPresenter> i
     @NonNull
     @Override
     public LoginPresenter createPresenter() {
-        return new LoginPresenter();
+        return new LoginPresenter(this);
     }
 
     @Override
@@ -84,6 +88,12 @@ public class LoginActivity extends GeneralActivity<ILoginView, LoginPresenter> i
     @Override
     public void passwordValidationError() {
         TextInputHelper.showError(emailInputLay, R.string.login_password_error);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onGoogleSignInResult(requestCode,resultCode,data);
     }
 
     @Override
