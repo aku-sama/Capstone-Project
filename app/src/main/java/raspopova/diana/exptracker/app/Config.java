@@ -65,4 +65,10 @@ public class Config {
         return pin != null && pin.length() == 4;
 
     }
+
+    public static void logout() {
+        SharedPreferences.Editor editor = getEditor();
+        editor.clear();
+        editor.commit();
+    }
 }

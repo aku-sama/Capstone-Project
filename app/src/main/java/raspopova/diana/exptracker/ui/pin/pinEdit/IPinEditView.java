@@ -7,4 +7,18 @@ import raspopova.diana.exptracker.base.IGeneralView;
  */
 
 public interface IPinEditView extends IGeneralView {
+    void fillView(String pin);
+
+    void showEmptyPin();
+
+    void showFullPin();
+
+    void showOneItemPinSelected();
+
+    void showTwoItemPinSelected();
+
+    void showThreeItemPinSelected();
+
+    void onPinSuccess();
+
 }

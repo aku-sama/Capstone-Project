@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">ExpTracker</string>
     <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
+
     <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
 
     <!-- sign in -->
     <string name="sign_in_title">Sign In</string>
@@ -23,4 +27,6 @@
     <string name="action_filter">Date Filter</string>
     <string name="snack_bar_button">OK</string>
     <string name="progress_text">waiting...</string>
+    <string name="enter_pin_error">Wrong PIN code.</string>
+    <string name="dialog_pin_forget_message">We\'ll just log you out of the app. After a while you can sign in again and give a new PIN.</string>
 </resources>
