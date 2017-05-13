@@ -25,7 +25,16 @@
         <activity android:name=".ui.pin.pinSet.PinSetActivity" />
         <activity android:name=".ui.pin.pinEdit.PinEditActivity" />
 
-        <activity android:name=".ui.chart.ChartActivity" />
+        <activity
+            android:name=".ui.chart.ChartActivity"
+            android:label="" />
+
+        <activity android:name=".ui.extensesDetails.ExpensesDetailsActivity" />
+
+        <activity
+            android:name=".ui.addExpenses.AddExpensesCategoryActivity"
+            android:label="@string/add_purchase_category_title"
+            android:parentActivityName=".ui.chart.ChartActivity" />
     </application>
 
 </manifest>

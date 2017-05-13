@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_array">
+        <item>Car</item>
+        <item>House</item>
+        <item>Restaurants</item>
+        <item>Internet &amp; mobile</item>
+        <item>Other</item>
+        <item>Credits</item>
+        <item>Gifts</item>
+        <item>Food</item>
+        <item>Pet</item>
+        <item>Big purchases</item>
+        <item>Health</item>
+        <item>Unknown</item>
+    </string-array>
+
+    <integer-array name="category_img_array">
+        <item>@drawable/ic_car_white</item>
+        <item>@drawable/ic_home_white</item>
+        <item>@drawable/ic_restaurant_white</item>
+        <item>@drawable/ic_phonelink_white</item>
+        <item>@drawable/ic_wallet_white</item>
+        <item>@drawable/ic_account_white</item>
+        <item>@drawable/ic_giftcard_white</item>
+        <item>@drawable/ic_shopping_cart_white</item>
+        <item>@drawable/ic_pets_white</item>
+        <item>@drawable/ic_big_purchase_white</item>
+        <item>@drawable/ic_healing_white</item>
+        <item>@drawable/ic_unknownn_white</item>
+    </integer-array>
+</resources>

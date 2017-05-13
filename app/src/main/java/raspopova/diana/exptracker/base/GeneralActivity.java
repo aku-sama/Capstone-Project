@@ -94,4 +94,10 @@ public abstract class GeneralActivity<V extends MvpView, P extends MvpPresenter<
     public void setToolbar(Toolbar toolbar) {
         setSupportActionBar(toolbar);
     }
+
+    public void setToolbarBackButton(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_gray);
+    }
 }

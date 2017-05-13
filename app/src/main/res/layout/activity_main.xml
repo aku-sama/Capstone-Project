@@ -37,6 +37,7 @@
                 app:layout_collapseParallaxMultiplier="0.8" />
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_collapseMode="pin">
@@ -58,6 +59,7 @@
         tools:listitem="@layout/item_expenses_main" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add_gray"
