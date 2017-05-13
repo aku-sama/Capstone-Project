@@ -1,7 +1,6 @@
 package raspopova.diana.exptracker.ui.login;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
@@ -22,13 +21,13 @@ import raspopova.diana.exptracker.utils.TokenHelper;
  * Created by Diana.Raspopova on 5/9/2017.
  */
 
-public class LoginPresenter extends MvpBasePresenter<ILoginView> implements GoogleApiClient.OnConnectionFailedListener {
+class LoginPresenter extends MvpBasePresenter<ILoginView> implements GoogleApiClient.OnConnectionFailedListener {
 
-    public static final Integer RC_SIGN_IN = 456;
-    GoogleApiClient mGoogleApiClient;
-    Activity context;
+    private static final Integer RC_SIGN_IN = 456;
+    private GoogleApiClient mGoogleApiClient;
+    private Activity context;
 
-    public LoginPresenter(Activity context) {
+    LoginPresenter(Activity context) {
         this.context = context;
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -70,7 +69,7 @@ public class LoginPresenter extends MvpBasePresenter<ILoginView> implements Goog
         getView().showError(connectionResult.getErrorMessage(), connectionResult.getErrorCode());
     }
 
-    public void onGoogleSignInResult(int requestCode, int resultCode, Intent data) {
+    void onGoogleSignInResult(int requestCode, int resultCode, Intent data) {
         // Result returned from launching the Intent from
         //   GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -78,7 +77,7 @@ public class LoginPresenter extends MvpBasePresenter<ILoginView> implements Goog
             if (result.isSuccess()) {
                 GoogleSignInAccount acct = result.getSignInAccount();
                 // Get account information
-                String token = acct.getIdToken();
+                String token = TokenHelper.createToken(acct.getId(), acct.getEmail());
                 saveAuthGoNext(token);
             }
         }

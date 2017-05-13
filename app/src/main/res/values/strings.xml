@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ExpTracker</string>
     <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
+    <string name="dialog_ok">OK</string>
 
     <!-- sign in -->
     <string name="sign_in_title">Sign In</string>
@@ -16,6 +17,7 @@
     <string name="set_pin_message">setup 4-digits code for\nprotecting your app data</string>
     <string name="enter_pin_title">Enter your PIN</string>
     <string name="enter_pin_forgot_button"><u>forgot pin?</u></string>
+    <string name="set_pin_success_message">Pin successfully created</string>
 
 
     <string name="action_filter">Date Filter</string>

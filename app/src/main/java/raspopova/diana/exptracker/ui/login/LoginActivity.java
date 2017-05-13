@@ -92,7 +92,7 @@ public class LoginActivity extends GeneralActivity<ILoginView, LoginPresenter, L
 
     @Override
     public void showError(int message, int... code) {
-        showErrorSnackBar(getString(message));
+        showErrorSnackBar(message);
     }
 
     @Override
