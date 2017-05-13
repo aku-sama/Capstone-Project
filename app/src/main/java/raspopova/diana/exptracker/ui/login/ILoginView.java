@@ -8,6 +8,8 @@ import raspopova.diana.exptracker.base.IGeneralView;
 
 public interface ILoginView extends IGeneralView {
 
+    void fillView(String email, String password);
+
     void emailValidationError();
 
     void passwordValidationError();

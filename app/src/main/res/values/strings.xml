@@ -3,6 +3,7 @@
     <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
 
     <!-- sign in -->
+    <string name="sign_in_title">Sign In</string>
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_register_button">register</string>

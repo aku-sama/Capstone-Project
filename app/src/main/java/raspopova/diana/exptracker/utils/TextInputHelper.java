@@ -37,4 +37,15 @@ public class TextInputHelper {
 
         return "";
     }
+
+    public static void setValue(final TextInputLayout layout, int text) {
+        setValue(layout, ExpApplication.getInstance().getString(text));
+    }
+
+    public static void setValue(final TextInputLayout layout, String text) {
+        EditText edit = layout.getEditText();
+        if (edit != null) {
+            edit.setText(text);
+        }
+    }
 }

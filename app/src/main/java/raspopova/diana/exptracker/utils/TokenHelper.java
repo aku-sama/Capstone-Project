@@ -9,8 +9,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class TokenHelper {
 
-    public static String createToken(String password, String phone) {
-        return md5(password + ":" + phone);
+    public static String createToken(String password, String email) {
+        return md5(password + ":" + email);
     }
 
 

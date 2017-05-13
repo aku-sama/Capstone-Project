@@ -18,6 +18,7 @@
     <dimen name="button_pin_size">56dp</dimen>
     <dimen name="pin_indicator_size">24dp</dimen>
     <dimen name="chart_size">220dp</dimen>
+    <dimen name="google_button_width">150dp</dimen>
 
 
 </resources>

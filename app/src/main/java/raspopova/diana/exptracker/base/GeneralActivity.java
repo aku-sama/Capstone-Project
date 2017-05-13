@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity;
+import com.hannesdorfmann.mosby3.mvp.viewstate.RestorableViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 import raspopova.diana.exptracker.R;
 
@@ -19,7 +23,7 @@ import raspopova.diana.exptracker.R;
  * Created by Diana.Raspopova on 5/9/2017.
  */
 
-public abstract class GeneralActivity <V extends MvpView, P extends MvpPresenter<V>> extends MvpActivity<V, P> {
+public abstract class GeneralActivity<V extends MvpView, P extends MvpPresenter<V>, VS extends RestorableViewState<V>> extends MvpViewStateActivity<V, P, VS> {
     ProgressDialog progress;
 
     @Override
@@ -87,4 +91,7 @@ public abstract class GeneralActivity <V extends MvpView, P extends MvpPresenter
         startActivity(intent);
     }
 
+    public void setToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+    }
 }
