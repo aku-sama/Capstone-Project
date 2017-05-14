@@ -20,10 +20,19 @@ public class CategoryHelper {
         return ids[DEFAULT_CATEGORY];
     }
 
+    public static int getDarkImageForCategory(int category) {
+        return getImageForCategory(category, true);
+    }
+
     public static int getImageForCategory(int category) {
+        return getImageForCategory(category, false);
+    }
+
+    private static int getImageForCategory(int category, boolean dark) {
 
         Resources res = ExpApplication.getInstance().getResources();
-        TypedArray imgs = res.obtainTypedArray(R.array.category_img_array);
+        TypedArray imgs = res.obtainTypedArray(dark ? R.array.category_img_dark_array :
+                R.array.category_img_array);
 
         if (category >= imgs.length()) category = DEFAULT_CATEGORY;
 

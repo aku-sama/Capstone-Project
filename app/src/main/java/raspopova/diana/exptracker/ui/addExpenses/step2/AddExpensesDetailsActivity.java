@@ -64,6 +64,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
         setToolbarBackButton(toolbar);
         categoryId = getIntent().getIntExtra(BundleConfig.CATEGORY_PURCHASE, CategoryHelper.getDefaultCategory());
         presenter.setDateValue();
+        presenter.setCategoryId(categoryId);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     @NonNull
     @Override
     public AddDetailsPresenter createPresenter() {
-        return new AddDetailsPresenter(categoryId);
+        return new AddDetailsPresenter();
     }
 
     @NonNull

@@ -12,6 +12,7 @@ import java.util.Date;
 
 import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.app.ExpApplication;
+import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesColumns;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
 import raspopova.diana.exptracker.utils.Utils;
@@ -30,15 +31,18 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
     private Uri imageUri;
     private String pathToPhoto = "";
 
-    AddDetailsPresenter(int categoryId) {
-        this.categoryId = categoryId;
+    AddDetailsPresenter() {
         Calendar cal = Calendar.getInstance();
         timestamp = cal.getTime().getTime();
     }
 
+    void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
     void savePurchase(String amount, String description) {
         if (validate(amount, description)) {
-            raspopova.diana.exptracker.contentProvider.Expenses expenses = new raspopova.diana.exptracker.contentProvider.Expenses();
+            Expenses expenses = new Expenses();
             expenses.setOwnerId(Config.getAuthorizationToken());
             expenses.setDescription(description);
             expenses.setAmount(Double.valueOf(amount));
@@ -52,7 +56,7 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
         }
     }
 
-    private void insertToExpenses(raspopova.diana.exptracker.contentProvider.Expenses expenses) {
+    private void insertToExpenses(Expenses expenses) {
         Log.d(LOG_TAG, "insert");
         ContentValues cv = new ContentValues();
         cv.put(ExpensesColumns.AMOUNT, expenses.getAmount());

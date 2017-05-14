@@ -3,6 +3,7 @@ package raspopova.diana.exptracker.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 public class Config {
     public static final SimpleDateFormat DATE_FORMAT_OUTPUT = new SimpleDateFormat("yyyy.MM.dd");
+    public static final DecimalFormat amount = new DecimalFormat("0.00");
     public static final long PIN_TIMEOUT = 30000L;
 
     private static final String PREF_FILE = "veo_prefs";

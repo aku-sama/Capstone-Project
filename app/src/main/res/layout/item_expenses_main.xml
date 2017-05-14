@@ -46,5 +46,5 @@
         android:layout_height="1px"
         android:layout_below="@id/categoryText"
         android:layout_toEndOf="@id/categoryLogo"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimaryDark" />
 </RelativeLayout>

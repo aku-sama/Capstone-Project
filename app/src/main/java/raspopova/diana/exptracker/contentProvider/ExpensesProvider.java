@@ -22,6 +22,10 @@ public final class ExpensesProvider {
         String EXPENSES = "expenses";
     }
 
+    public static Uri getExpensesPath() {
+        return buildUri(Path.EXPENSES);
+    }
+
     private static Uri buildUri(String... paths) {
         Uri.Builder builder = BASE_CONTENT_URI.buildUpon();
         for (String path : paths) {

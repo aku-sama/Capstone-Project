@@ -44,4 +44,19 @@
         <item>@drawable/ic_healing_white</item>
         <item>@drawable/ic_unknownn_white</item>
     </integer-array>
+
+    <integer-array name="category_img_dark_array">
+        <item>@drawable/ic_car_grey</item>
+        <item>@drawable/ic_home_gray</item>
+        <item>@drawable/ic_restaurant_gray</item>
+        <item>@drawable/ic_phonelink_gray</item>
+        <item>@drawable/ic_wallet_gray</item>
+        <item>@drawable/ic_account_gray</item>
+        <item>@drawable/ic_giftcard_gray</item>
+        <item>@drawable/ic_shopping_cart_gray</item>
+        <item>@drawable/ic_pets_gray</item>
+        <item>@drawable/ic_big_purchase_gray</item>
+        <item>@drawable/ic_healing_gray</item>
+        <item>@drawable/ic_unknownn_gray</item>
+    </integer-array>
 </resources>

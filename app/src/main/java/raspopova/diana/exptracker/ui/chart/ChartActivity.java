@@ -3,6 +3,7 @@ package raspopova.diana.exptracker.ui.chart;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -27,7 +28,8 @@ import raspopova.diana.exptracker.ui.extensesDetails.ExpensesDetailsActivity;
  * Created by Diana.Raspopova on 5/13/2017.
  */
 
-public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, ChartViewState> implements IChartView {
+public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, ChartViewState>
+        implements IChartView {
 
     @BindView(R.id.spinnerMode)
     Spinner spinnerMode;
@@ -42,7 +44,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @BindView(R.id.expensesList)
     RecyclerView expensesList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,15 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
         setToolbar(toolbar);
         setSpinnerMenu();
+
+        setRecycler();
+
+    }
+
+    private void setRecycler() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        expensesList.setLayoutManager(layoutManager);
+
     }
 
     @Override
@@ -132,4 +142,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     void onAddFabClick() {
         startActivity(AddExpensesCategoryActivity.class);
     }
+
+
 }
