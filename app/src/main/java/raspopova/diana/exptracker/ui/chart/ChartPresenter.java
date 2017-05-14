@@ -1,7 +1,14 @@
 package raspopova.diana.exptracker.ui.chart;
 
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
 import java.util.ArrayList;
@@ -22,7 +29,7 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
         list = new ArrayList<>();
     }
 
-    List<SummaryObject> getDataFromCursor(Cursor cursor, int id) {
+    void getDataFromCursor(Cursor cursor, int id) {
         double amount = getAmount(cursor);
 
         if (amount > 0) {
@@ -33,7 +40,9 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
             item.setAmount(amount);
             list.add(item);
         }
-        return list;
+        getView().setPieChartData(list);
+        getView().setListData(list);
+
     }
 
     private double getAmount(Cursor cursor) {
@@ -42,5 +51,11 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
             amount += (cursor.getDouble(cursor.getColumnIndex(ExpensesColumns.AMOUNT)));
         }
         return amount;
+    }
+
+    public CharSequence generateCenterSpannableText() {
+        SpannableString s = new SpannableString("May 01 - 14");
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 0, s.length(), 0);
+        return s;
     }
 }

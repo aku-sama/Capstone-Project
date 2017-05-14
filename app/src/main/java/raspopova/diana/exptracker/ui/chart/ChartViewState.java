@@ -26,6 +26,6 @@ public class ChartViewState implements RestorableViewState<IChartView> {
 
     @Override
     public void apply(IChartView view, boolean retained) {
-
+        view.resetChart();
     }
 }

@@ -1,6 +1,7 @@
 package raspopova.diana.exptracker.ui.chart;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,11 +78,41 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
         setToolbar(toolbar);
         setSpinnerMenu();
-
+        setPiechart();
         setRecycler();
         for (int aCategoryId : categoryId) {
             getSupportLoaderManager().initLoader(aCategoryId, null, this);
         }
+    }
+
+    private void setPiechart() {
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+        pieChart.setCenterText(presenter.generateCenterSpannableText());
+        pieChart.getLegend().setEnabled(false);
+
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.WHITE);
+
+        pieChart.setTransparentCircleColor(Color.WHITE);
+        pieChart.setTransparentCircleAlpha(110);
+
+        pieChart.setHoleRadius(50f);
+        pieChart.setTransparentCircleRadius(53f);
+
+        pieChart.setDrawCenterText(true);
+
+        pieChart.setEntryLabelColor(Color.GRAY);
+        pieChart.setEntryLabelTextSize(8f);
+
+        pieChart.setRotationAngle(0);
+        // enable rotation of the chart by touch
+        pieChart.setRotationEnabled(true);
+        pieChart.setHighlightPerTapEnabled(true);
+
     }
 
     private void setRecycler() {
@@ -180,11 +219,72 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         Cursor cursor = (Cursor) data;
-        adapter.setData(presenter.getDataFromCursor(cursor, loader.getId()));
+        presenter.getDataFromCursor(cursor, loader.getId());
     }
 
     @Override
     public void onLoaderReset(Loader loader) {
         adapter.setData(new ArrayList<SummaryObject>());
+    }
+
+    @Override
+    public void setPieChartData(List<SummaryObject> list) {
+
+        ArrayList<PieEntry> entries = new ArrayList<>(list.size());
+
+        for (SummaryObject item : list) {
+
+            entries.add(new PieEntry((float) item.getAmount(),
+                    item.getCategoryName(), null));
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+
+
+        ArrayList<Integer> colors = new ArrayList<>();
+
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.COLORFUL_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.LIBERTY_COLORS)
+            colors.add(c);
+
+        for (int c : ColorTemplate.PASTEL_COLORS)
+            colors.add(c);
+
+        colors.add(ColorTemplate.getHoloBlue());
+
+        dataSet.setColors(colors);
+
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(8f);
+        data.setValueTextColor(Color.GRAY);
+        pieChart.setData(data);
+
+        // undo all highlights
+        pieChart.highlightValues(null);
+        pieChart.invalidate();
+    }
+
+    @Override
+    public void setListData(List<SummaryObject> list) {
+        adapter.setData(list);
+    }
+
+    @Override
+    public void resetChart() {
+        if (pieChart.getData() != null) {
+            pieChart.getData().clearValues();
+        }
     }
 }
