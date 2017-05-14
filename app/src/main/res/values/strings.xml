@@ -27,8 +27,14 @@
     <string name="dialog_pin_forget_message">We\'ll just log you out of the app. After a while you can sign in again and give a new PIN.</string>
 
     <!-- add purchase category -->
-    <string name="add_purchase_category_title">Select expenditure categoty</string>
+    <string name="add_purchase_category_title">Select expenditure category</string>
     
     <string name="action_filter">Date Filter</string>
     <string name="enter_pin_error">Wrong PIN code.</string>
+    <string name="purchase_date">Purchase date</string>
+    <string name="purchase_amount">Amount</string>
+    <string name="purchase_description">Purchase description</string>
+    <string name="attache_cheque">attache cheque</string>
+    <string name="add_purchase">add purchase</string>
+    <string name="add_purchase_details_title">Add expenditure details</string>
 </resources>

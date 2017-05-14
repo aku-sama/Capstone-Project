@@ -15,6 +15,21 @@
         <item>Unknown</item>
     </string-array>
 
+    <integer-array name="category_id">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </integer-array>
+
     <integer-array name="category_img_array">
         <item>@drawable/ic_car_white</item>
         <item>@drawable/ic_home_white</item>

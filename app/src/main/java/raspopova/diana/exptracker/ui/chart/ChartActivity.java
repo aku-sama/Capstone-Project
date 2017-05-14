@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.base.GeneralActivity;
-import raspopova.diana.exptracker.ui.addExpenses.AddExpensesCategoryActivity;
+import raspopova.diana.exptracker.ui.addExpenses.step1.AddExpensesCategoryActivity;
 import raspopova.diana.exptracker.ui.extensesDetails.ExpensesDetailsActivity;
 
 /**

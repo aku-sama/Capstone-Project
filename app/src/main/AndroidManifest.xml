@@ -32,9 +32,14 @@
         <activity android:name=".ui.extensesDetails.ExpensesDetailsActivity" />
 
         <activity
-            android:name=".ui.addExpenses.AddExpensesCategoryActivity"
+            android:name=".ui.addExpenses.step1.AddExpensesCategoryActivity"
             android:label="@string/add_purchase_category_title"
             android:parentActivityName=".ui.chart.ChartActivity" />
+
+        <activity
+            android:name=".ui.addExpenses.step2.AddExpensesDetailsActivity"
+            android:label="@string/add_purchase_details_title"
+            android:parentActivityName=".ui.addExpenses.step1.AddExpensesCategoryActivity" />
     </application>
 
 </manifest>
