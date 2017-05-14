@@ -23,22 +23,22 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
     }
 
     List<SummaryObject> getDataFromCursor(Cursor cursor, int id) {
-        SummaryObject item = new SummaryObject();
-        item.setCategoryId(id);
-        item.setCategoryLogo(CategoryHelper.getDarkImageForCategory(id));
-        item.setCategoryName(CategoryHelper.getNameForCategory(id));
-
         double amount = getAmount(cursor);
-        item.setAmount(amount);
 
-        list.add(item);
+        if (amount > 0) {
+            SummaryObject item = new SummaryObject();
+            item.setCategoryId(id);
+            item.setCategoryLogo(CategoryHelper.getDarkImageForCategory(id));
+            item.setCategoryName(CategoryHelper.getNameForCategory(id));
+            item.setAmount(amount);
+            list.add(item);
+        }
         return list;
     }
 
     private double getAmount(Cursor cursor) {
         double amount = 0;
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            // The Cursor is now set to the right position
             amount += (cursor.getDouble(cursor.getColumnIndex(ExpensesColumns.AMOUNT)));
         }
         return amount;
