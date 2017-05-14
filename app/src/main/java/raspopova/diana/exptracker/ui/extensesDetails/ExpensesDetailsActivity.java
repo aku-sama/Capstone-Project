@@ -25,7 +25,7 @@ import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
  */
 
 public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, DetailsPresenter, DetailsViewModel>
-        implements IDetailsView,LoaderManager.LoaderCallbacks {
+        implements IDetailsView, LoaderManager.LoaderCallbacks {
 
     @BindView(R.id.expensesList)
     RecyclerView expensesList;

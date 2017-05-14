@@ -1,8 +1,12 @@
 package raspopova.diana.exptracker.ui.chart;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,11 +20,18 @@ import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.PieChart;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.base.GeneralActivity;
+import raspopova.diana.exptracker.contentProvider.Expenses;
+import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
+import raspopova.diana.exptracker.contentProvider.SummaryObject;
 import raspopova.diana.exptracker.ui.addExpenses.step1.AddExpensesCategoryActivity;
 import raspopova.diana.exptracker.ui.extensesDetails.ExpensesDetailsActivity;
 
@@ -29,7 +40,7 @@ import raspopova.diana.exptracker.ui.extensesDetails.ExpensesDetailsActivity;
  */
 
 public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, ChartViewState>
-        implements IChartView {
+        implements IChartView, LoaderManager.LoaderCallbacks {
 
     @BindView(R.id.spinnerMode)
     Spinner spinnerMode;
@@ -44,6 +55,12 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @BindView(R.id.expensesList)
     RecyclerView expensesList;
 
+    @BindArray(R.array.category_id)
+    int[] categoryId;
+
+    private SummaryAdapter adapter;
+    private List<SummaryObject> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +71,15 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         setSpinnerMenu();
 
         setRecycler();
-
+        for (int aCategoryId : categoryId) {
+            getSupportLoaderManager().initLoader(aCategoryId, null, this);
+        }
     }
 
     private void setRecycler() {
+        adapter = new SummaryAdapter();
+        expensesList.setAdapter(adapter);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         expensesList.setLayoutManager(layoutManager);
 
@@ -144,4 +166,25 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     }
 
 
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(
+                this,
+                ExpensesProvider.getExpensesPath(),
+                Expenses.DEFAULT_PROJECTION,
+                "CATEGORY_ID = " + String.valueOf(id),
+                null,
+                null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Object data) {
+        Cursor cursor = (Cursor) data;
+        adapter.setData(presenter.getDataFromCursor(cursor, loader.getId()));
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+        adapter.setData(new ArrayList<SummaryObject>());
+    }
 }

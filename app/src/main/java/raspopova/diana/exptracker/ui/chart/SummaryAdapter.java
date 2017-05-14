@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.contentProvider.Expenses;
+import raspopova.diana.exptracker.contentProvider.SummaryObject;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.CursorRecyclerViewAdapter;
 
@@ -21,21 +25,17 @@ import raspopova.diana.exptracker.utils.CursorRecyclerViewAdapter;
  * Created by Diana.Raspopova on 5/14/2017.
  */
 
-public class SummaryCursorAdapter extends CursorRecyclerViewAdapter<SummaryCursorAdapter.ViewHolder> {
+public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHolder> {
 
-    private Context context;
+    private List<SummaryObject> list;
 
-    public SummaryCursorAdapter(Context context, Cursor cursor) {
-        super(context, cursor);
-        this.context = context;
+    public SummaryAdapter() {
+        list = new ArrayList<>();
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
-        final Expenses myListItem = Expenses.fromCursor(cursor);
-        viewHolder.categoryText.setText(CategoryHelper.getNameForCategory(myListItem.getCategoryId()));
-        viewHolder.categoryLogo.setImageResource(CategoryHelper.getDarkImageForCategory(myListItem.getCategoryId()));
-        viewHolder.amountText.setText(Config.amount.format(myListItem.getAmount()));
+    public void setData(List<SummaryObject> list) {
+        this.list = new ArrayList<>(list);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -44,6 +44,19 @@ public class SummaryCursorAdapter extends CursorRecyclerViewAdapter<SummaryCurso
                 .inflate(R.layout.item_expenses_main, parent, false);
 
         return new ViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        final SummaryObject myListItem = list.get(position);
+        holder.categoryText.setText(myListItem.getCategoryName());
+        holder.categoryLogo.setImageResource(myListItem.getCategoryLogo());
+        holder.amountText.setText(Config.amount.format(myListItem.getAmount()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
