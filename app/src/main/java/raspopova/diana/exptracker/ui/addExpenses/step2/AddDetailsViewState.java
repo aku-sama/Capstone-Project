@@ -9,7 +9,7 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.RestorableViewState;
  * Created by Diana.Raspopova on 5/14/2017.
  */
 
-public class AddDetailsViewState implements RestorableViewState<IAddDetailsView> {
+class AddDetailsViewState implements RestorableViewState<IAddDetailsView> {
 
     private static final String PURCHASE_DESCRIPTION = "purchase_description";
     private static final String PURCHASE_AMOUNT = "purchase_amount";
@@ -42,15 +42,15 @@ public class AddDetailsViewState implements RestorableViewState<IAddDetailsView>
         view.restoreAttachment();
     }
 
-    public void setDate(String date) {
+    void setDate(String date) {
         this.date = date;
     }
 
-    public void setAmount(String amount) {
+    void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 }

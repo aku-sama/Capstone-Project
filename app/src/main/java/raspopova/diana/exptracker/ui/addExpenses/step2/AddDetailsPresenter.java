@@ -1,9 +1,9 @@
 package raspopova.diana.exptracker.ui.addExpenses.step2;
 
-import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
@@ -12,6 +12,8 @@ import java.util.Date;
 
 import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.app.ExpApplication;
+import raspopova.diana.exptracker.contentProvider.ExpensesColumns;
+import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
 import raspopova.diana.exptracker.utils.Utils;
 
 
@@ -20,6 +22,7 @@ import raspopova.diana.exptracker.utils.Utils;
  */
 
 public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
+    private static final String LOG_TAG = "expenses_dp";
     public final int REQ_CODE_IMAGE_FROM_CAMERA = 2320;
 
     private int categoryId;
@@ -35,8 +38,37 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
 
     void savePurchase(String amount, String description) {
         if (validate(amount, description)) {
+            raspopova.diana.exptracker.contentProvider.Expenses expenses = new raspopova.diana.exptracker.contentProvider.Expenses();
+            expenses.setOwnerId(Config.getAuthorizationToken());
+            expenses.setDescription(description);
+            expenses.setAmount(Double.valueOf(amount));
+            expenses.setPurchaseDate(timestamp);
+            expenses.setCategoryId(categoryId);
+            expenses.setAttachment(pathToPhoto);
+
+            getView().showProgress();
+            insertToExpenses(expenses);
 
         }
+    }
+
+    private void insertToExpenses(raspopova.diana.exptracker.contentProvider.Expenses expenses) {
+        Log.d(LOG_TAG, "insert");
+        ContentValues cv = new ContentValues();
+        cv.put(ExpensesColumns.AMOUNT, expenses.getAmount());
+        cv.put(ExpensesColumns.ATTACHMENT, expenses.getAttachment());
+        cv.put(ExpensesColumns.CATEGORY_ID, expenses.getCategoryId());
+        cv.put(ExpensesColumns.DESCRIPTION, expenses.getDescription());
+        cv.put(ExpensesColumns.OWNER_ID, expenses.getOwnerId());
+        cv.put(ExpensesColumns.PURCHASE_DATE, expenses.getPurchaseDate());
+
+        ExpApplication.getInstance().getContentResolver().delete(ExpensesProvider.Expenses.withTimestamp(expenses.getPurchaseDate()),
+                null, null);
+        ExpApplication.getInstance().getContentResolver().insert(ExpensesProvider.Expenses.withTimestamp(expenses.getPurchaseDate()), cv);
+
+        getView().hideProgress();
+        getView().onAddSuccess();
+
     }
 
     private boolean validate(String amount, String description) {

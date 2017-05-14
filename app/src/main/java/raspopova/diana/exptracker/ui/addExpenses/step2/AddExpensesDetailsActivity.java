@@ -22,6 +22,7 @@ import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.BundleConfig;
 import raspopova.diana.exptracker.base.GeneralActivity;
+import raspopova.diana.exptracker.ui.chart.ChartActivity;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.TextInputHelper;
 import raspopova.diana.exptracker.utils.Utils;
@@ -168,6 +169,11 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     @Override
     public void restoreAttachment() {
         presenter.restoreAttachment();
+    }
+
+    @Override
+    public void onAddSuccess() {
+        startActivity(ChartActivity.class, true);
     }
 
     @OnClick(R.id.buttonDate)

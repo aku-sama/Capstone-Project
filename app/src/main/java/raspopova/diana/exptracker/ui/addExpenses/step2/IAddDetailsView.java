@@ -23,4 +23,6 @@ public interface IAddDetailsView extends IGeneralView {
     void attacheEnable();
 
     void restoreAttachment();
+
+    void onAddSuccess();
 }
