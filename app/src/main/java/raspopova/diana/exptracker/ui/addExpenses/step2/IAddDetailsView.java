@@ -14,5 +14,13 @@ public interface IAddDetailsView extends IGeneralView {
 
     void showDescriptionValidationError();
 
-    void setDefaultDateValue();
+    void setDateValue(String date);
+
+    void addFileToList(String fileName);
+
+    void attachmentDisable();
+
+    void attacheEnable();
+
+    void restoreAttachment();
 }

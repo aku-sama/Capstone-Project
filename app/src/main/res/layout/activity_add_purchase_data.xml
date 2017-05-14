@@ -20,9 +20,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <TextView
             android:id="@+id/buttonDate"
-            style="?android:attr/spinnerStyle"
+            style="@style/DatePickerButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/gap_16"

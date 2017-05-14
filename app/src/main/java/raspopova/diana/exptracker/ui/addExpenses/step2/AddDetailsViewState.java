@@ -39,6 +39,7 @@ public class AddDetailsViewState implements RestorableViewState<IAddDetailsView>
     @Override
     public void apply(IAddDetailsView view, boolean retained) {
         view.fillView(date, amount, description);
+        view.restoreAttachment();
     }
 
     public void setDate(String date) {

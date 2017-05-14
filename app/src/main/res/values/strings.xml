@@ -37,4 +37,6 @@
     <string name="attache_cheque">attache cheque</string>
     <string name="add_purchase">add purchase</string>
     <string name="add_purchase_details_title">Add expenditure details</string>
+    <string name="purchase_description_error">Error: there is no Description.</string>
+    <string name="purchase_amount_error">Amount value is incorrect</string>
 </resources>
