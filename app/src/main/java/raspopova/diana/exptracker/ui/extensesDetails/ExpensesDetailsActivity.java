@@ -1,10 +1,14 @@
 package raspopova.diana.exptracker.ui.extensesDetails;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -57,6 +61,12 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        viewState.setToolbarTitle(getSupportActionBar().getTitle().toString());
+    }
+
+    @Override
     public void initLoaders(long startDate, long endDate, boolean isFirstStart) {
         Bundle args = new Bundle();
         args.putLong(START_DATE, startDate);
@@ -95,7 +105,9 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
                 showDateFilter();
                 return true;
             case R.id.action_download:
-                downloadPdfReport();
+                if (isStoragePermissionGranted()) {
+                    downloadPdfReport();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -128,6 +140,30 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
         );
         dpd.show(getFragmentManager(), "Datepickerdialog");
 
+    }
+
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            downloadPdfReport();
+        }
     }
 
 
