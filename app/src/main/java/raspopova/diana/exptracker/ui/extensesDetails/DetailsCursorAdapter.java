@@ -1,14 +1,19 @@
 package raspopova.diana.exptracker.ui.extensesDetails;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +53,13 @@ public class DetailsCursorAdapter extends CursorRecyclerViewAdapter<DetailsCurso
             viewHolder.rootRelative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    File file = new File(purchase.getAttachment());
+                    String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(".jpeg");
 
+                    Intent intent = new Intent();
+                    intent.setAction(android.content.Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.fromFile(file), mime);
+                    context.startActivity(intent);
                 }
             });
         }

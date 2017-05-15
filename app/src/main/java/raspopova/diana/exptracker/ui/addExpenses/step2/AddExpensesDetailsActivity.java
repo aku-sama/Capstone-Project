@@ -1,13 +1,17 @@
 package raspopova.diana.exptracker.ui.addExpenses.step2;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -192,10 +196,11 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
 
     @OnClick(R.id.attacheButton)
     void onPhotoAttache() {
-        final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, presenter.getImageUri());
-        startActivityForResult(intent, presenter.REQ_CODE_IMAGE_FROM_CAMERA);
+        if (isStoragePermissionGranted()) {
+            callCameraIntent();
+        }
     }
+
 
     @OnClick(R.id.addButton)
     void onPurchaseAdd() {
@@ -210,5 +215,35 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
             presenter.onPhotoGetResult(requestCode, resultCode, data);
         }
 
+    }
+
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            callCameraIntent();
+        }
+    }
+
+    private void callCameraIntent() {
+        final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, presenter.getImageUri());
+        startActivityForResult(intent, presenter.REQ_CODE_IMAGE_FROM_CAMERA);
     }
 }
