@@ -85,6 +85,6 @@
         app:fabSize="normal"
         app:layout_anchor="@id/expensesList"
         app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_behavior="raspopova.diana.exptracker.utils.FabScrollBehavior"
         app:useCompatPadding="true" />
 </android.support.design.widget.CoordinatorLayout>
