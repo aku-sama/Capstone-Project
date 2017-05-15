@@ -9,6 +9,13 @@
     <string name="snack_bar_button">OK</string>
     <string name="progress_text">waiting...</string>
 
+    <!-- currency -->
+    <string name="currency">$</string>
+    <!-- menu -->
+
+    <string name="action_filter">Date Filter</string>
+    <string name="action_list">Switch to details list</string>
+
     <!-- sign in -->
     <string name="sign_in_title">Sign In</string>
     <string name="login_email">Email</string>
@@ -25,12 +32,12 @@
     <string name="enter_pin_forgot_button"><u>forgot pin?</u></string>
     <string name="set_pin_success_message">Pin successfully created</string>
     <string name="dialog_pin_forget_message">We\'ll just log you out of the app. After a while you can sign in again and give a new PIN.</string>
+    <string name="enter_pin_error">Wrong PIN code.</string>
 
     <!-- add purchase category -->
     <string name="add_purchase_category_title">Select expenditure category</string>
-    
-    <string name="action_filter">Date Filter</string>
-    <string name="enter_pin_error">Wrong PIN code.</string>
+
+    <!-- add purchase details -->
     <string name="purchase_date">Purchase date</string>
     <string name="purchase_amount">Amount</string>
     <string name="purchase_description">Purchase description</string>

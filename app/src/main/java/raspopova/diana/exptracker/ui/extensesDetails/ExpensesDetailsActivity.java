@@ -23,7 +23,6 @@ import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
-import raspopova.diana.exptracker.ui.chart.ChartActivity;
 
 /**
  * Created by Diana.Raspopova on 5/13/2017.
@@ -80,7 +79,7 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.menu_filter, menu);
         return true;
     }
 

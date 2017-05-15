@@ -9,6 +9,9 @@ import android.provider.OpenableColumns;
 
 import java.io.File;
 
+import raspopova.diana.exptracker.R;
+import raspopova.diana.exptracker.app.ExpApplication;
+
 /**
  * Created by Diana.Raspopova on 5/14/2017.
  */
@@ -67,5 +70,9 @@ public class Utils {
             }
         }
         return result;
+    }
+
+    public static String getCurrency() {
+        return " " + ExpApplication.getInstance().getResources().getString(R.string.currency);
     }
 }

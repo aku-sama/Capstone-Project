@@ -20,6 +20,7 @@ import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.SummaryObject;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.CursorRecyclerViewAdapter;
+import raspopova.diana.exptracker.utils.Utils;
 
 /**
  * Created by Diana.Raspopova on 5/14/2017.
@@ -51,7 +52,7 @@ public class SummaryAdapter extends RecyclerView.Adapter<SummaryAdapter.ViewHold
         final SummaryObject myListItem = list.get(position);
         holder.categoryText.setText(myListItem.getCategoryName());
         holder.categoryLogo.setImageResource(myListItem.getCategoryLogo());
-        holder.amountText.setText(Config.amount.format(myListItem.getAmount()));
+        holder.amountText.setText(Config.amount.format(myListItem.getAmount()) + Utils.getCurrency());
     }
 
     @Override

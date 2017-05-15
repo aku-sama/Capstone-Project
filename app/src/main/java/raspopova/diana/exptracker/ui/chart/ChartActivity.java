@@ -11,14 +11,10 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.charts.PieChart;
@@ -54,8 +50,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     public static final String START_DATE = "startDate";
     public static final String END_DATE = "endDate";
 
-    @BindView(R.id.spinnerMode)
-    Spinner spinnerMode;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -63,6 +57,8 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     PieChart pieChart;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    @BindView(R.id.textSummary)
+    TextView textSummary;
 
     @BindView(R.id.expensesList)
     RecyclerView expensesList;
@@ -80,7 +76,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         ButterKnife.bind(this);
 
         setToolbar(toolbar);
-        setSpinnerMenu();
         setRecycler();
         presenter.initializeDefaultPeriodData();
         setPiechart();
@@ -103,6 +98,11 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public void setChartCenterText(CharSequence text) {
         pieChart.setCenterText(text);
+    }
+
+    @Override
+    public void setSummaryText(String text) {
+        textSummary.setText(text);
     }
 
     private void setPiechart() {
@@ -146,7 +146,7 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.menu_chart, menu);
         return true;
     }
 
@@ -155,6 +155,9 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         switch (item.getItemId()) {
             case R.id.action_filter:
                 showDateFilter();
+                return true;
+            case R.id.action_list:
+                startActivity(ExpensesDetailsActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -171,26 +174,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         );
         dpd.show(getFragmentManager(), "Datepickerdialog");
 
-    }
-
-    private void setSpinnerMenu() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.menu_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMode.setAdapter(adapter);
-        spinnerMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 1) startActivity(ExpensesDetailsActivity.class);
-
-                spinnerMode.setSelection(0);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     @NonNull

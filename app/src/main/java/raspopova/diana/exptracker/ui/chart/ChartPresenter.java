@@ -18,9 +18,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.contentProvider.ExpensesColumns;
 import raspopova.diana.exptracker.contentProvider.SummaryObject;
 import raspopova.diana.exptracker.utils.CategoryHelper;
+import raspopova.diana.exptracker.utils.Utils;
 
 /**
  * Created by Diana.Raspopova on 5/13/2017.
@@ -71,7 +73,17 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
         if (list.size() > 0) {
             getView().setPieChartData(list);
             getView().setListData(list);
+            getView().setSummaryText(Config.amount.format(getSummaryAmount()) + Utils.getCurrency());
         }
+    }
+
+    private double getSummaryAmount() {
+        double sum = 0;
+        for (SummaryObject item : list) {
+            sum += item.getAmount();
+        }
+
+        return sum;
     }
 
     private double getAmount(Cursor cursor) {

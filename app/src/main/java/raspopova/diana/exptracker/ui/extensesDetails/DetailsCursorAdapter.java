@@ -22,6 +22,7 @@ import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.CursorRecyclerViewAdapter;
+import raspopova.diana.exptracker.utils.Utils;
 
 /**
  * Created by Diana.Raspopova on 5/14/2017.
@@ -41,7 +42,7 @@ public class DetailsCursorAdapter extends CursorRecyclerViewAdapter<DetailsCurso
         final Expenses purchase = Expenses.fromCursor(cursor);
         viewHolder.descriptionText.setText(purchase.getDescription());
         viewHolder.categoryImage.setImageResource(CategoryHelper.getDarkImageForCategory(purchase.getCategoryId()));
-        viewHolder.amountText.setText(Config.amount.format(purchase.getAmount()));
+        viewHolder.amountText.setText(Config.amount.format(purchase.getAmount())+ Utils.getCurrency());
         viewHolder.dateText.setText(Config.DATE_FORMAT_OUTPUT.format(purchase.getPurchaseDate()));
 
         if(purchase.getAttachment().isEmpty()){
