@@ -54,6 +54,9 @@ dependencies {
     //CONTENT PROVIDER
     apt 'net.simonvt.schematic:schematic-compiler:0.6.8'
     compile 'net.simonvt.schematic:schematic:0.6.8'
+
+    //DATE PICKER WITH RANGE
+    compile 'com.borax12.materialdaterangepicker:library:1.9'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,5 +1,7 @@
 package raspopova.diana.exptracker.ui.chart;
 
+import android.text.Spannable;
+
 import java.util.List;
 
 import raspopova.diana.exptracker.base.IGeneralView;
@@ -15,4 +17,8 @@ public interface IChartView extends IGeneralView {
     void setListData(List<SummaryObject> list);
 
     void resetChart();
+
+    void initLoaders(long startDate, long endDate, boolean isFirstStart);
+
+    void setChartCenterText(CharSequence text);
 }

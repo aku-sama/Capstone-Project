@@ -11,6 +11,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,17 +20,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindArray;
@@ -49,8 +49,10 @@ import raspopova.diana.exptracker.ui.extensesDetails.ExpensesDetailsActivity;
  */
 
 public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, ChartViewState>
-        implements IChartView, LoaderManager.LoaderCallbacks {
+        implements IChartView, LoaderManager.LoaderCallbacks, DatePickerDialog.OnDateSetListener {
 
+    public static final String START_DATE = "startDate";
+    public static final String END_DATE = "endDate";
     @BindView(R.id.spinnerMode)
     Spinner spinnerMode;
     @BindView(R.id.toolbar)
@@ -78,11 +80,28 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
         setToolbar(toolbar);
         setSpinnerMenu();
-        setPiechart();
         setRecycler();
-        for (int aCategoryId : categoryId) {
-            getSupportLoaderManager().initLoader(aCategoryId, null, this);
+        presenter.initializeDefaultPeriodData();
+        setPiechart();
+    }
+
+    @Override
+    public void initLoaders(long startDate, long endDate, boolean isFirstStart) {
+        Bundle args = new Bundle();
+        args.putLong(START_DATE, startDate);
+        args.putLong(END_DATE, endDate);
+        if (isFirstStart) {
+            for (int aCategoryId : categoryId)
+                getSupportLoaderManager().initLoader(aCategoryId, args, this);
+        } else {
+            for (int aCategoryId : categoryId)
+                getSupportLoaderManager().restartLoader(aCategoryId, args, this);
         }
+    }
+
+    @Override
+    public void setChartCenterText(CharSequence text) {
+        pieChart.setCenterText(text);
     }
 
     private void setPiechart() {
@@ -91,7 +110,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         pieChart.setExtraOffsets(5, 10, 5, 5);
 
         pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.setCenterText(presenter.generateCenterSpannableText());
         pieChart.getLegend().setEnabled(false);
 
         pieChart.setDrawHoleEnabled(true);
@@ -135,11 +153,23 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter:
-                //// TODO: 5/13/2017
+                showDateFilter();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showDateFilter() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                ChartActivity.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+
     }
 
     private void setSpinnerMenu() {
@@ -207,11 +237,15 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
+        long startDate = args.getLong(START_DATE);
+        long endDate = args.getLong(END_DATE);
         return new CursorLoader(
                 this,
                 ExpensesProvider.getExpensesPath(),
                 Expenses.DEFAULT_PROJECTION,
-                "CATEGORY_ID = " + String.valueOf(id),
+                "(CATEGORY_ID = " + String.valueOf(id) +
+                        ") AND (PURCHASE_DATE >= " + startDate +
+                        ") AND (PURCHASE_DATE < " + endDate + ")",
                 null,
                 null);
     }
@@ -285,6 +319,13 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     public void resetChart() {
         if (pieChart.getData() != null) {
             pieChart.getData().clearValues();
+            pieChart.highlightValues(null);
+            pieChart.invalidate();
         }
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+        presenter.updatePurchaseDate(year, monthOfYear, dayOfMonth, yearEnd, monthOfYearEnd, dayOfMonthEnd);
     }
 }
