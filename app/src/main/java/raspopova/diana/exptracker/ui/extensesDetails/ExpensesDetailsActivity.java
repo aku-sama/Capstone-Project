@@ -1,6 +1,8 @@
 package raspopova.diana.exptracker.ui.extensesDetails;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
@@ -15,11 +17,13 @@ import android.view.MenuItem;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 
+import java.io.File;
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
+import raspopova.diana.exptracker.app.PdfCreateAsyncTask;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
@@ -89,9 +93,28 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
             case R.id.action_filter:
                 showDateFilter();
                 return true;
+            case R.id.action_download:
+                downloadPdfReport();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void downloadPdfReport() {
+        showProgress();
+        PdfCreateAsyncTask task = new PdfCreateAsyncTask(new PdfCreateAsyncTask.Callback() {
+            @Override
+            public void onFileCreated(File file) {
+                hideProgress();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+        });
+        task.execute(presenter.getExpenses());
+
     }
 
     private void showDateFilter() {
@@ -160,6 +183,7 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
 
     @Override
     public void onLoadFinished(Loader loader, Object data) {
+        presenter.getDataFromCursor((Cursor) data);
         mAdapter.swapCursor((Cursor) data);
     }
 

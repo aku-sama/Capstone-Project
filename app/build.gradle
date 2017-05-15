@@ -57,6 +57,9 @@ dependencies {
 
     //DATE PICKER WITH RANGE
     compile 'com.borax12.materialdaterangepicker:library:1.9'
+
+    //PDF  CREATE
+    compile 'com.itextpdf:itextg:5.5.9'
 }
 
 apply plugin: 'com.google.gms.google-services'

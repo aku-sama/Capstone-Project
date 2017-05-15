@@ -46,4 +46,5 @@
     <string name="add_purchase_details_title">Add expenditure details</string>
     <string name="purchase_description_error">Error: there is no Description.</string>
     <string name="purchase_amount_error">Amount value is incorrect</string>
+    <string name="action_download">Download report</string>
 </resources>
