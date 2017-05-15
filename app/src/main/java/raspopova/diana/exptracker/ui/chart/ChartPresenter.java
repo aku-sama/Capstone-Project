@@ -70,11 +70,11 @@ class ChartPresenter extends MvpBasePresenter<IChartView> {
             list.add(item);
         }
 
-        if (list.size() > 0) {
+
             getView().setPieChartData(list);
             getView().setListData(list);
             getView().setSummaryText(Config.amount.format(getSummaryAmount()) + Utils.getCurrency());
-        }
+
     }
 
     private double getSummaryAmount() {
