@@ -33,6 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
+import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
@@ -227,7 +228,8 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
                 this,
                 ExpensesProvider.getExpensesPath(),
                 Expenses.DEFAULT_PROJECTION,
-                "(CATEGORY_ID = " + String.valueOf(id) +
+                "(OWNER_ID  = '" + Config.getAuthorizationToken() + "') AND " +
+                        "(CATEGORY_ID = " + String.valueOf(id) +
                         ") AND (PURCHASE_DATE >= " + startDate +
                         ") AND (PURCHASE_DATE < " + endDate + ")",
                 null,

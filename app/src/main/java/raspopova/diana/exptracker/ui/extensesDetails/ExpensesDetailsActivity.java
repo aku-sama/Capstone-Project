@@ -23,6 +23,7 @@ import java.util.Calendar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
+import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.app.PdfCreateAsyncTask;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
@@ -175,7 +176,8 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
                 this,
                 ExpensesProvider.getExpensesPath(),
                 Expenses.DEFAULT_PROJECTION,
-                "(PURCHASE_DATE >= " + startDate +
+                "(OWNER_ID  = '" + Config.getAuthorizationToken() + "') AND " +
+                        "(PURCHASE_DATE >= " + startDate +
                         ") AND (PURCHASE_DATE < " + endDate + ")",
                 null,
                 null);
