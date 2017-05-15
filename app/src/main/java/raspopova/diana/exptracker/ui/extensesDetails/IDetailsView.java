@@ -7,4 +7,8 @@ import raspopova.diana.exptracker.base.IGeneralView;
  */
 
 public interface IDetailsView extends IGeneralView {
+
+    void initLoaders(long startDate, long endDate, boolean isFirstStart);
+
+    void setToolbarTitle(String text);
 }

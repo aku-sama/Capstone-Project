@@ -53,6 +53,7 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
     public static final String START_DATE = "startDate";
     public static final String END_DATE = "endDate";
+
     @BindView(R.id.spinnerMode)
     Spinner spinnerMode;
     @BindView(R.id.toolbar)

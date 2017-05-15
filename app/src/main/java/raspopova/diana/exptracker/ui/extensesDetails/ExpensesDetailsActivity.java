@@ -13,19 +13,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.borax12.materialdaterangepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
+import raspopova.diana.exptracker.ui.chart.ChartActivity;
 
 /**
  * Created by Diana.Raspopova on 5/13/2017.
  */
 
 public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, DetailsPresenter, DetailsViewModel>
-        implements IDetailsView, LoaderManager.LoaderCallbacks {
+        implements IDetailsView, LoaderManager.LoaderCallbacks, DatePickerDialog.OnDateSetListener {
+
+    public static final String START_DATE = "startDate";
+    public static final String END_DATE = "endDate";
 
     @BindView(R.id.expensesList)
     RecyclerView expensesList;
@@ -41,8 +49,24 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
         ButterKnife.bind(this);
         setToolbarBackButton(toolbar);
         setRecycler();
+        presenter.initializeDefaultPeriodData();
+    }
 
-        getSupportLoaderManager().initLoader(0, null, this);
+    @Override
+    public void initLoaders(long startDate, long endDate, boolean isFirstStart) {
+        Bundle args = new Bundle();
+        args.putLong(START_DATE, startDate);
+        args.putLong(END_DATE, endDate);
+        if (isFirstStart) {
+            getSupportLoaderManager().initLoader(0, args, this);
+        } else {
+            getSupportLoaderManager().restartLoader(0, args, this);
+        }
+    }
+
+    @Override
+    public void setToolbarTitle(String text) {
+        getSupportActionBar().setTitle(text);
     }
 
     private void setRecycler() {
@@ -64,12 +88,25 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter:
-                //// TODO: 5/13/2017
+                showDateFilter();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void showDateFilter() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                ExpensesDetailsActivity.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+
+    }
+
 
     @NonNull
     @Override
@@ -110,11 +147,14 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
 
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
+        long startDate = args.getLong(START_DATE);
+        long endDate = args.getLong(END_DATE);
         return new CursorLoader(
                 this,
                 ExpensesProvider.getExpensesPath(),
                 Expenses.DEFAULT_PROJECTION,
-                null,
+                "(PURCHASE_DATE >= " + startDate +
+                        ") AND (PURCHASE_DATE < " + endDate + ")",
                 null,
                 null);
     }
@@ -127,5 +167,12 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     @Override
     public void onLoaderReset(Loader loader) {
         mAdapter.swapCursor(null);
+    }
+
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+        presenter.updatePurchaseDate(year, monthOfYear, dayOfMonth, yearEnd, monthOfYearEnd, dayOfMonthEnd);
+
     }
 }

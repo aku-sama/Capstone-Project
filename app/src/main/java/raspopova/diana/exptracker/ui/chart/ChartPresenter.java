@@ -27,6 +27,7 @@ import raspopova.diana.exptracker.utils.CategoryHelper;
  */
 
 class ChartPresenter extends MvpBasePresenter<IChartView> {
+
     public static final SimpleDateFormat MONT_FORMATTER = new SimpleDateFormat("MMM dd");
 
     private List<SummaryObject> list;
