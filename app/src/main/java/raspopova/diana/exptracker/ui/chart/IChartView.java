@@ -16,8 +16,6 @@ public interface IChartView extends IGeneralView {
 
     void setListData(List<SummaryObject> list);
 
-    void resetChart();
-
     void initLoaders(long startDate, long endDate, boolean isFirstStart);
 
     void setChartCenterText(CharSequence text);

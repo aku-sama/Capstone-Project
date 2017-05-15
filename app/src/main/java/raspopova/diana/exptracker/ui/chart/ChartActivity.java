@@ -250,50 +250,52 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public void setPieChartData(List<SummaryObject> list) {
 
-        ArrayList<PieEntry> entries = new ArrayList<>(list.size());
+            ArrayList<PieEntry> entries = new ArrayList<>(list.size());
 
-        for (SummaryObject item : list) {
+            for (SummaryObject item : list) {
 
-            entries.add(new PieEntry((float) item.getAmount(),
-                    item.getCategoryName(), null));
-        }
+                entries.add(new PieEntry((float) item.getAmount(),
+                        item.getCategoryName(), null));
+            }
 
-        PieDataSet dataSet = new PieDataSet(entries, "");
+            PieDataSet dataSet = new PieDataSet(entries, "");
 
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
+            dataSet.setSliceSpace(3f);
+            dataSet.setSelectionShift(5f);
 
 
-        ArrayList<Integer> colors = new ArrayList<>();
+            ArrayList<Integer> colors = new ArrayList<>();
 
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.JOYFUL_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.COLORFUL_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.LIBERTY_COLORS)
+                colors.add(c);
 
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
+            for (int c : ColorTemplate.PASTEL_COLORS)
+                colors.add(c);
 
-        colors.add(ColorTemplate.getHoloBlue());
+            colors.add(ColorTemplate.getHoloBlue());
 
-        dataSet.setColors(colors);
+            dataSet.setColors(colors);
 
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(8f);
-        data.setValueTextColor(Color.GRAY);
-        pieChart.setData(data);
+            PieData data = new PieData(dataSet);
+            data.setValueFormatter(new PercentFormatter());
+            data.setValueTextSize(8f);
+            data.setValueTextColor(Color.GRAY);
+            pieChart.setData(null);
+            pieChart.setData(data);
 
-        // undo all highlights
-        pieChart.highlightValues(null);
-        pieChart.invalidate();
+            // undo all highlights
+            pieChart.highlightValues(null);
+            pieChart.invalidate();
+
     }
 
     @Override
@@ -301,14 +303,6 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
         adapter.setData(list);
     }
 
-    @Override
-    public void resetChart() {
-        if (pieChart.getData() != null) {
-            pieChart.getData().clearValues();
-            pieChart.highlightValues(null);
-            pieChart.invalidate();
-        }
-    }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
