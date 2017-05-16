@@ -24,6 +24,7 @@
     <dimen name="tab_login_extra_padding">0dp</dimen>
     <dimen name="login_button_margin_horizontal">16dp</dimen>
     <dimen name="login_top_margin">16dp</dimen>
+    <dimen name="pin_top_padding">24dp</dimen>
 
 
 </resources>

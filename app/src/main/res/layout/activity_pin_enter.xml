@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/gap_16"
             android:layout_marginRight="@dimen/gap_16"
-            android:layout_marginTop="@dimen/gap_24"
+            android:layout_marginTop="@dimen/pin_top_padding"
             android:text="@string/enter_pin_title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

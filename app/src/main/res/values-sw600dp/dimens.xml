@@ -3,4 +3,5 @@
     <dimen name="tab_login_extra_padding">104dp</dimen>
     <dimen name="login_button_margin_horizontal">104dp</dimen>
     <dimen name="login_top_margin">32dp</dimen>
+    <dimen name="pin_top_padding">64dp</dimen>
 </resources>
