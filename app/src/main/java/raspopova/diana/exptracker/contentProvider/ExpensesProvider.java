@@ -53,5 +53,6 @@ public final class ExpensesProvider {
         public static Uri withTimestamp(long timestamp) {
             return buildUri(Path.EXPENSES, String.valueOf(timestamp));
         }
+
     }
 }

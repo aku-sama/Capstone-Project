@@ -1,5 +1,6 @@
 package raspopova.diana.exptracker.ui.chart;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -254,6 +255,7 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     public void onLoadFinished(Loader loader, Object data) {
         Cursor cursor = (Cursor) data;
         presenter.getDataFromCursor(cursor, loader.getId());
+
     }
 
     @Override

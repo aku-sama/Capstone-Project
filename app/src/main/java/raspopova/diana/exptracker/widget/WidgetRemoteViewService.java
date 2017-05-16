@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.util.Calendar;
+
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.contentProvider.Expenses;
@@ -40,8 +42,25 @@ public class WidgetRemoteViewService extends RemoteViewsService {
                 }
 
                 final long identityToken = Binder.clearCallingIdentity();
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1, 0, 0, 1);
+                long dateStart = cal.getTime().getTime();
+
+                if (cal.get(Calendar.MONTH) < 12)
+                    cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, 1, 0, 0, 1);
+                else
+                    cal.set(cal.get(Calendar.YEAR) + 1, cal.get(Calendar.MONTH) - 11, 1, 0, 0, 1);
+
+                long dateEnd = cal.getTime().getTime();
+
                 data = getContentResolver().query(ExpensesProvider.Expenses.CONTENT_URI,
-                        null, null, null, null);
+                        Expenses.DEFAULT_PROJECTION,
+                        "(OWNER_ID  = '" + Config.getAuthorizationToken() + "') AND " +
+                                "(PURCHASE_DATE >= " + dateStart +
+                                ") AND (PURCHASE_DATE < " + dateEnd + ")",
+                        null,
+                        null);
 
                 Binder.restoreCallingIdentity(identityToken);
             }
@@ -75,11 +94,6 @@ public class WidgetRemoteViewService extends RemoteViewsService {
                 views.setImageViewResource(R.id.categoryImage, CategoryHelper.getDarkImageForCategory(purchase.getCategoryId()));
                 views.setTextViewText(R.id.amountText, Config.amount.format(purchase.getAmount()) + Utils.getCurrency());
                 views.setTextViewText(R.id.dateText, Config.DATE_FORMAT_OUTPUT.format(purchase.getPurchaseDate()));
-                if (purchase.getAttachment().isEmpty()) {
-                    views.setViewVisibility(R.id.photoImage, View.GONE);
-                } else {
-                    views.setViewVisibility(R.id.photoImage, View.VISIBLE);
-                }
 
 
                 final Intent fillInIntent = new Intent();
@@ -103,7 +117,7 @@ public class WidgetRemoteViewService extends RemoteViewsService {
             @Override
             public long getItemId(int position) {
                 if (data.moveToPosition(position))
-                    return data.getLong(data.getColumnIndex(ExpensesColumns._ID));
+                    return data.getLong(data.getColumnIndex(ExpensesColumns.PURCHASE_DATE));
                 return position;
             }
 

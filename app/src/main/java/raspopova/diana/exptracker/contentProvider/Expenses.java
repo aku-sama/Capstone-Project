@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 
 public class Expenses implements BaseColumns {
 
+    private Integer id;
     private Integer categoryId;
     private Double amount;
     private String description;
@@ -19,13 +20,14 @@ public class Expenses implements BaseColumns {
     public Expenses() {
     }
 
-    public Expenses(long id,
+    public Expenses(int id,
                     double amount,
                     String attachment,
                     int category_id,
                     String description,
                     long purchaseDate,
                     String owner) {
+        this.id = id;
         this.amount = amount;
         this.attachment = attachment;
         this.categoryId = category_id;
@@ -34,6 +36,9 @@ public class Expenses implements BaseColumns {
         this.ownerId = owner;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
@@ -79,6 +84,10 @@ public class Expenses implements BaseColumns {
         return purchaseDate;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getAttachment() {
         return attachment;
     }
@@ -86,7 +95,7 @@ public class Expenses implements BaseColumns {
     public static Expenses fromCursor(Cursor cursor) {
 
         Expenses expenses = new Expenses(
-                cursor.getLong(cursor.getColumnIndex(ExpensesColumns._ID)),
+                cursor.getInt(cursor.getColumnIndex(ExpensesColumns._ID)),
                 cursor.getDouble(cursor.getColumnIndex(ExpensesColumns.AMOUNT)),
                 cursor.getString(cursor.getColumnIndex(ExpensesColumns.ATTACHMENT)),
                 cursor.getInt(cursor.getColumnIndex(ExpensesColumns.CATEGORY_ID)),
