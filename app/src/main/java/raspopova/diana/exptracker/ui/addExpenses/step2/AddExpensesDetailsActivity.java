@@ -180,7 +180,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     public void onAddSuccess(Expenses expenses) {
         Bundle bundle = new Bundle();
         bundle.putLong(FirebaseEvents.CATEGORY_ID_FIREBASE_BUNDLE, expenses.getCategoryId());
-        logEvent(bundle, FirebaseEvents.CALENDER_FILTER_PERIOD);
+        logEvent(bundle, FirebaseEvents.ADD_PURCHASE_RESULT);
 
         startActivity(ChartActivity.class, true);
     }
