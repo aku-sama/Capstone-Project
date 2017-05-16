@@ -6,4 +6,5 @@ package raspopova.diana.exptracker.app;
 
 public class BundleConfig {
     public static final String CATEGORY_PURCHASE = "category_of_purchase";
+    public static final String IMAGE = "photo_attachment";
 }

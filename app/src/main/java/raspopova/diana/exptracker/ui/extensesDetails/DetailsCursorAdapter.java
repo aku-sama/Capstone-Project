@@ -18,8 +18,10 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
+import raspopova.diana.exptracker.app.BundleConfig;
 import raspopova.diana.exptracker.app.Config;
 import raspopova.diana.exptracker.contentProvider.Expenses;
+import raspopova.diana.exptracker.ui.photoView.PhotoViewActivity;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.CursorRecyclerViewAdapter;
 import raspopova.diana.exptracker.utils.Utils;
@@ -38,28 +40,22 @@ public class DetailsCursorAdapter extends CursorRecyclerViewAdapter<DetailsCurso
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, Cursor cursor) {
+    public void onBindViewHolder(final ViewHolder viewHolder, Cursor cursor) {
         final Expenses purchase = Expenses.fromCursor(cursor);
         viewHolder.descriptionText.setText(purchase.getDescription());
         viewHolder.categoryImage.setImageResource(CategoryHelper.getDarkImageForCategory(purchase.getCategoryId()));
-        viewHolder.amountText.setText(Config.amount.format(purchase.getAmount())+ Utils.getCurrency());
+        viewHolder.amountText.setText(Config.amount.format(purchase.getAmount()) + Utils.getCurrency());
         viewHolder.dateText.setText(Config.DATE_FORMAT_OUTPUT.format(purchase.getPurchaseDate()));
 
-        if(purchase.getAttachment().isEmpty()){
+        if (purchase.getAttachment().isEmpty()) {
             viewHolder.photoImage.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             viewHolder.photoImage.setVisibility(View.VISIBLE);
             viewHolder.rootRelative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    File file = new File(purchase.getAttachment());
-                    String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(".jpeg");
-
-                    Intent intent = new Intent();
-                    intent.setAction(android.content.Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(file), mime);
+                    Intent intent = new Intent(context, PhotoViewActivity.class);
+                    intent.putExtra(BundleConfig.IMAGE, purchase.getAttachment());
                     context.startActivity(intent);
                 }
             });
