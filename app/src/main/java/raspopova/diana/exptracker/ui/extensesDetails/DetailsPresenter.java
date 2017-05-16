@@ -64,6 +64,11 @@ public class DetailsPresenter extends MvpBasePresenter<IDetailsView> {
             Expenses expenses = Expenses.fromCursor(cursor);
             expensesList.add(expenses);
         }
+
+        if (expensesList.size() > 0)
+            getView().hideEmptyList();
+        else
+            getView().showEmptyList();
     }
 
     public List<Expenses> getExpenses() {

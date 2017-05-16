@@ -18,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 
@@ -47,6 +49,8 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     RecyclerView expensesList;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.emptyListText)
+    TextView emptyListText;
 
     private DetailsCursorAdapter mAdapter;
 
@@ -83,6 +87,16 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
         getSupportActionBar().setTitle(text);
     }
 
+    @Override
+    public void showEmptyList() {
+        emptyListText.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmptyList() {
+        emptyListText.setVisibility(View.GONE);
+    }
+
     private void setRecycler() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         expensesList.setLayoutManager(layoutManager);
@@ -115,19 +129,29 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     }
 
     private void downloadPdfReport() {
-        showProgress();
-        PdfCreateAsyncTask task = new PdfCreateAsyncTask(new PdfCreateAsyncTask.Callback() {
-            @Override
-            public void onFileCreated(File file) {
-                hideProgress();
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.fromFile(file), "application/pdf");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-            }
-        });
-        task.execute(presenter.getExpenses());
+        if (presenter.getExpenses().size() > 0) {
+            showProgress();
+            PdfCreateAsyncTask task = new PdfCreateAsyncTask(new PdfCreateAsyncTask.Callback() {
+                @Override
+                public void onFileCreated(File file) {
+                    hideProgress();
+                    showPdfVewIntent(file);
+                }
+            });
+            task.execute(presenter.getExpenses());
+        } else
+            showErrorSnackBar(getString(R.string.empty_report_alert));
+    }
 
+    private void showPdfVewIntent(File file) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        } catch (Exception e) {
+            showErrorSnackBar(e.getLocalizedMessage());
+        }
     }
 
     private void showDateFilter() {
@@ -161,7 +185,7 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             downloadPdfReport();
         }
     }

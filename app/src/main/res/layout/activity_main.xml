@@ -72,6 +72,8 @@
         android:id="@+id/expensesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/chart_list_tab_padding"
+        android:layout_marginLeft="@dimen/chart_list_tab_padding"
         android:background="@color/gray_fbfbf"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/item_expenses_main" />
@@ -79,7 +81,7 @@
     <TextView
         android:id="@+id/emptyListText"
         style="@style/HeadlineText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/gap_64"
         android:layout_marginRight="@dimen/gap_64"

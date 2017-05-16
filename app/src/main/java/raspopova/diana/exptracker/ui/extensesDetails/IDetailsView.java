@@ -11,4 +11,8 @@ public interface IDetailsView extends IGeneralView {
     void initLoaders(long startDate, long endDate, boolean isFirstStart);
 
     void setToolbarTitle(String text);
+
+    void showEmptyList();
+
+    void hideEmptyList();
 }

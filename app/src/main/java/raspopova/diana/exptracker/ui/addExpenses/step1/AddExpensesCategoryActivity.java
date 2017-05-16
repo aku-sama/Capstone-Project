@@ -42,7 +42,8 @@ public class AddExpensesCategoryActivity extends GeneralActivity<IGeneralView, M
 
     private void setupRecycler() {
 
-        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager sglm = new StaggeredGridLayoutManager(getResources().getInteger(R.integer.grid_column_count),
+                StaggeredGridLayoutManager.VERTICAL);
         categoryList.setLayoutManager(sglm);
 
 

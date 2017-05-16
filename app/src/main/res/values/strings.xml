@@ -47,5 +47,6 @@
     <string name="purchase_description_error">Error: there is no Description.</string>
     <string name="purchase_amount_error">Amount value is incorrect</string>
     <string name="action_download">Download report</string>
-    <string name="empty_summary_list">You don\'t have any expenses. Tap this button for adding new expenditure.</string>
+    <string name="empty_summary_list">You don\'t have any expenses for selected calendar period. Tap "Add expenditure" button for adding new expenses.</string>
+    <string name="empty_report_alert">There is no expenses for creating report</string>
 </resources>

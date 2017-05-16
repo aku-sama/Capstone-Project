@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <integer name="grid_column_count">6</integer>
     <dimen name="tab_login_extra_padding">104dp</dimen>
     <dimen name="login_button_margin_horizontal">104dp</dimen>
     <dimen name="login_top_margin">32dp</dimen>
     <dimen name="pin_top_padding">64dp</dimen>
+    <dimen name="purchase_horizontal_margin">104dp</dimen>
+    <dimen name="chart_list_tab_padding">64dp</dimen>
 </resources>
