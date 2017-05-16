@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
@@ -61,6 +62,9 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @BindView(R.id.textSummary)
     TextView textSummary;
 
+    @BindView(R.id.emptyListText)
+    TextView emptyListText;
+
     @BindView(R.id.expensesList)
     RecyclerView expensesList;
 
@@ -104,6 +108,16 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public void setSummaryText(String text) {
         textSummary.setText(text);
+    }
+
+    @Override
+    public void showEmptyList() {
+        emptyListText.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmptyList() {
+        emptyListText.setVisibility(View.GONE);
     }
 
     private void setPiechart() {
@@ -250,51 +264,51 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     @Override
     public void setPieChartData(List<SummaryObject> list) {
 
-            ArrayList<PieEntry> entries = new ArrayList<>(list.size());
+        ArrayList<PieEntry> entries = new ArrayList<>(list.size());
 
-            for (SummaryObject item : list) {
+        for (SummaryObject item : list) {
 
-                entries.add(new PieEntry((float) item.getAmount(),
-                        item.getCategoryName(), null));
-            }
+            entries.add(new PieEntry((float) item.getAmount(),
+                    item.getCategoryName(), null));
+        }
 
-            PieDataSet dataSet = new PieDataSet(entries, "");
+        PieDataSet dataSet = new PieDataSet(entries, "");
 
-            dataSet.setSliceSpace(3f);
-            dataSet.setSelectionShift(5f);
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
 
 
-            ArrayList<Integer> colors = new ArrayList<>();
+        ArrayList<Integer> colors = new ArrayList<>();
 
-            for (int c : ColorTemplate.VORDIPLOM_COLORS)
-                colors.add(c);
+        for (int c : ColorTemplate.VORDIPLOM_COLORS)
+            colors.add(c);
 
-            for (int c : ColorTemplate.JOYFUL_COLORS)
-                colors.add(c);
+        for (int c : ColorTemplate.JOYFUL_COLORS)
+            colors.add(c);
 
-            for (int c : ColorTemplate.COLORFUL_COLORS)
-                colors.add(c);
+        for (int c : ColorTemplate.COLORFUL_COLORS)
+            colors.add(c);
 
-            for (int c : ColorTemplate.LIBERTY_COLORS)
-                colors.add(c);
+        for (int c : ColorTemplate.LIBERTY_COLORS)
+            colors.add(c);
 
-            for (int c : ColorTemplate.PASTEL_COLORS)
-                colors.add(c);
+        for (int c : ColorTemplate.PASTEL_COLORS)
+            colors.add(c);
 
-            colors.add(ColorTemplate.getHoloBlue());
+        colors.add(ColorTemplate.getHoloBlue());
 
-            dataSet.setColors(colors);
+        dataSet.setColors(colors);
 
-            PieData data = new PieData(dataSet);
-            data.setValueFormatter(new PercentFormatter());
-            data.setValueTextSize(8f);
-            data.setValueTextColor(Color.GRAY);
-            pieChart.setData(null);
-            pieChart.setData(data);
+        PieData data = new PieData(dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(8f);
+        data.setValueTextColor(Color.GRAY);
+        pieChart.setData(null);
+        pieChart.setData(data);
 
-            // undo all highlights
-            pieChart.highlightValues(null);
-            pieChart.invalidate();
+        // undo all highlights
+        pieChart.highlightValues(null);
+        pieChart.invalidate();
 
     }
 

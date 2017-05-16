@@ -21,4 +21,8 @@ public interface IChartView extends IGeneralView {
     void setChartCenterText(CharSequence text);
 
     void setSummaryText(String text);
+
+    void showEmptyList();
+
+    void hideEmptyList();
 }
