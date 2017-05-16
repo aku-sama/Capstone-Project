@@ -80,12 +80,13 @@
 
     <TextView
         android:id="@+id/emptyListText"
-        style="@style/HeadlineText"
+        style="@style/SubheaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/gap_64"
-        android:layout_marginRight="@dimen/gap_64"
+        android:layout_marginLeft="@dimen/chart_list_tab_padding"
+        android:layout_marginRight="@dimen/chart_list_tab_padding"
         android:layout_marginTop="@dimen/gap_64"
+        android:padding="@dimen/gap_16"
         android:drawableBottom="@drawable/ic_add_circle_green"
         android:drawablePadding="@dimen/gap_16"
         android:gravity="center"

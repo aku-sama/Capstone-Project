@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.Config;
+import raspopova.diana.exptracker.app.FirebaseEvents;
 import raspopova.diana.exptracker.app.PdfCreateAsyncTask;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
@@ -129,6 +130,8 @@ public class ExpensesDetailsActivity extends GeneralActivity<IDetailsView, Detai
     }
 
     private void downloadPdfReport() {
+        logEvent(null, FirebaseEvents.SAVE_REPORT);
+
         if (presenter.getExpenses().size() > 0) {
             showProgress();
             PdfCreateAsyncTask task = new PdfCreateAsyncTask(new PdfCreateAsyncTask.Callback() {

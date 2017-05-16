@@ -77,7 +77,7 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
         context.sendBroadcast(dataUpdatedIntent);
 
         getView().hideProgress();
-        getView().onAddSuccess();
+        getView().onAddSuccess(expenses);
 
     }
 

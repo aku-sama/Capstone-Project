@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "1050041130959",
-    "project_id": "principal-oxide-136623"
+    "firebase_url": "https://principal-oxide-136623.firebaseio.com",
+    "project_id": "principal-oxide-136623",
+    "storage_bucket": "principal-oxide-136623.appspot.com"
   },
   "client": [
     {
@@ -12,6 +14,10 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1050041130959-2btj53hv3rj1qvguj0njm42gb6qpb3ev.apps.googleusercontent.com",
+          "client_type": 3
+        },
         {
           "client_id": "1050041130959-r9khtqsah5qphpcesgr1qblnq6n3tfb4.apps.googleusercontent.com",
           "client_type": 3
@@ -27,7 +33,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCiH3KJ_QcByZTzkEptAaiJwzQZhw21E3M"
+          "current_key": "AIzaSyDyTy2ytroLBdQjj1yCp8mKjaV9qAveYDY"
         }
       ],
       "services": {
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050041130959-2btj53hv3rj1qvguj0njm42gb6qpb3ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

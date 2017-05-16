@@ -36,6 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.Config;
+import raspopova.diana.exptracker.app.FirebaseEvents;
 import raspopova.diana.exptracker.base.GeneralActivity;
 import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.contentProvider.ExpensesProvider;
@@ -173,6 +174,7 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
                 showDateFilter();
                 return true;
             case R.id.action_list:
+                logEvent(null, FirebaseEvents.VIEW_DETAILS_LIST);
                 startActivity(ExpensesDetailsActivity.class);
                 return true;
             default:
@@ -181,6 +183,9 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
     }
 
     private void showDateFilter() {
+
+        logEvent(null, FirebaseEvents.CALENDER_FILTER_PERIOD);
+
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
                 ChartActivity.this,
@@ -231,6 +236,7 @@ public class ChartActivity extends GeneralActivity<IChartView, ChartPresenter, C
 
     @OnClick(R.id.fab)
     void onAddFabClick() {
+        logEvent(null, FirebaseEvents.ADD_PURCHASE_BUTTON_CLICK);
         startActivity(AddExpensesCategoryActivity.class);
     }
 

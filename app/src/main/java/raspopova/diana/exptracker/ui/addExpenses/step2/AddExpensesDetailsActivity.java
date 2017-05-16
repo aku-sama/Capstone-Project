@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,11 +24,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import raspopova.diana.exptracker.R;
 import raspopova.diana.exptracker.app.BundleConfig;
+import raspopova.diana.exptracker.app.FirebaseEvents;
 import raspopova.diana.exptracker.base.GeneralActivity;
+import raspopova.diana.exptracker.contentProvider.Expenses;
 import raspopova.diana.exptracker.ui.chart.ChartActivity;
 import raspopova.diana.exptracker.utils.CategoryHelper;
 import raspopova.diana.exptracker.utils.TextInputHelper;
-import raspopova.diana.exptracker.utils.Utils;
 import raspopova.diana.exptracker.views.DatePickerFragment;
 
 /**
@@ -177,7 +177,11 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     }
 
     @Override
-    public void onAddSuccess() {
+    public void onAddSuccess(Expenses expenses) {
+        Bundle bundle = new Bundle();
+        bundle.putLong(FirebaseEvents.CATEGORY_ID_FIREBASE_BUNDLE, expenses.getCategoryId());
+        logEvent(bundle, FirebaseEvents.CALENDER_FILTER_PERIOD);
+
         startActivity(ChartActivity.class, true);
     }
 
@@ -197,6 +201,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     @OnClick(R.id.attacheButton)
     void onPhotoAttache() {
         if (isStoragePermissionGranted()) {
+            logEvent(null, FirebaseEvents.ADD_ATTACHMENT);
             callCameraIntent();
         }
     }
@@ -236,7 +241,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             callCameraIntent();
         }
     }

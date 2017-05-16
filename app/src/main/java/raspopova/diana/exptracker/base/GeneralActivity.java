@@ -2,6 +2,7 @@ package raspopova.diana.exptracker.base;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
@@ -25,6 +27,14 @@ import raspopova.diana.exptracker.R;
 
 public abstract class GeneralActivity<V extends MvpView, P extends MvpPresenter<V>, VS extends RestorableViewState<V>> extends MvpViewStateActivity<V, P, VS> {
     ProgressDialog progress;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -49,6 +59,10 @@ public abstract class GeneralActivity<V extends MvpView, P extends MvpPresenter<
         if (progress != null)
             progress.dismiss();
 
+    }
+
+    public void logEvent(Bundle params, String eventName) {
+        mFirebaseAnalytics.logEvent(eventName, params);
     }
 
     public void showErrorSnackBar(int messageId) {
