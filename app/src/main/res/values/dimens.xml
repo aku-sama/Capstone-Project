@@ -21,5 +21,9 @@
     <dimen name="google_button_width">150dp</dimen>
     <dimen name="gap_40">40dp</dimen>
 
+    <dimen name="tab_login_extra_padding">0dp</dimen>
+    <dimen name="login_button_margin_horizontal">16dp</dimen>
+    <dimen name="login_top_margin">16dp</dimen>
+
 
 </resources>
