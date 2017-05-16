@@ -83,7 +83,7 @@ public class AddExpensesDetailsActivity extends GeneralActivity<IAddDetailsView,
     @NonNull
     @Override
     public AddDetailsPresenter createPresenter() {
-        return new AddDetailsPresenter();
+        return new AddDetailsPresenter(this);
     }
 
     @NonNull

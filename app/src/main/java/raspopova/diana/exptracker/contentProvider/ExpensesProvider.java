@@ -14,6 +14,7 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 @ContentProvider(authority = ExpensesProvider.AUTHORITY, database = ExpensesDB.class)
 public final class ExpensesProvider {
 
+    public static final String ACTION_DATA_UPDATED = "raspopova.diana.exptracker.ACTION_DATA_UPDATED";
     public static final String AUTHORITY = "raspopova.diana.exptracker.contentProvider.ExpensesProvider";
 
     static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);

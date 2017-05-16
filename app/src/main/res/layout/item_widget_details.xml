@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootRelative"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <ImageView
+        android:id="@+id/categoryImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/gap_16"
+        tools:src="@drawable/ic_pets_gray" />
+
+    <TextView
+        android:id="@+id/amountText"
+        style="@style/HeadlineText"
+        android:layout_marginLeft="@dimen/gap_16"
+        android:layout_marginRight="@dimen/gap_16"
+        android:layout_marginTop="@dimen/gap_16"
+        android:layout_toLeftOf="@+id/photoImage"
+        android:layout_toRightOf="@+id/categoryImage"
+        tools:text="156.06 $" />
+
+    <TextView
+        android:id="@+id/dateText"
+        style="@style/SmallText"
+        android:layout_below="@id/amountText"
+        android:layout_marginLeft="@dimen/gap_16"
+        android:layout_marginRight="@dimen/gap_16"
+        android:layout_marginTop="@dimen/gap_4"
+        android:layout_toRightOf="@+id/categoryImage"
+        tools:text="06.05.2017" />
+
+    <TextView
+        android:id="@+id/descriptionText"
+        style="@style/SmallText"
+        android:layout_below="@id/dateText"
+        android:layout_marginBottom="@dimen/gap_16"
+        android:layout_marginLeft="@dimen/gap_16"
+        android:layout_marginRight="@dimen/gap_16"
+        android:layout_marginTop="@dimen/gap_4"
+        android:layout_toRightOf="@+id/categoryImage"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="lorem ipsum dollar" />
+
+    <ImageView
+        android:id="@+id/photoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/gap_16"
+        android:src="@drawable/ic_photo_library_gray" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/descriptionText"
+        android:background="@color/colorPrimaryDark" />
+</RelativeLayout>

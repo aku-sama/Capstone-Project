@@ -1,6 +1,7 @@
 package raspopova.diana.exptracker.ui.addExpenses.step2;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -30,8 +31,10 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
     private long timestamp;
     private Uri imageUri;
     private String pathToPhoto = "";
+    private Context context;
 
-    AddDetailsPresenter() {
+    AddDetailsPresenter(Context context) {
+        this.context = context;
         Calendar cal = Calendar.getInstance();
         timestamp = cal.getTime().getTime();
     }
@@ -69,6 +72,9 @@ public class AddDetailsPresenter extends MvpBasePresenter<IAddDetailsView> {
         ExpApplication.getInstance().getContentResolver().delete(ExpensesProvider.Expenses.withTimestamp(expenses.getPurchaseDate()),
                 null, null);
         ExpApplication.getInstance().getContentResolver().insert(ExpensesProvider.Expenses.withTimestamp(expenses.getPurchaseDate()), cv);
+
+        Intent dataUpdatedIntent = new Intent(ExpensesProvider.ACTION_DATA_UPDATED);
+        context.sendBroadcast(dataUpdatedIntent);
 
         getView().hideProgress();
         getView().onAddSuccess();
