@@ -15,6 +15,7 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="@dimen/gap_16"
         android:layout_marginEnd="@dimen/gap_32"
+        android:contentDescription="@string/content_description_expenses_category_logo"
         tools:src="@drawable/ic_pets_gray" />
 
     <TextView

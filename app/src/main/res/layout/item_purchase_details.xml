@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/gap_16"
+        android:contentDescription="@string/content_description_expenses_category_logo"
         tools:src="@drawable/ic_pets_gray" />
 
     <TextView
@@ -54,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/gap_16"
+        android:contentDescription="@string/content_description_view_cheque_attachment"
         android:src="@drawable/ic_photo_library_gray" />
 
     <View

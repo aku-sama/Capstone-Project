@@ -55,6 +55,7 @@
     <ImageButton
         android:id="@+id/keyDel"
         style="@style/ButtonPin"
+        android:contentDescription="@string/content_description_delete"
         android:layout_marginBottom="@dimen/gap_16"
         android:src="@drawable/ic_clear_gray" />
 
@@ -68,5 +69,6 @@
         android:id="@+id/keyBackspace"
         style="@style/ButtonPin"
         android:layout_marginBottom="@dimen/gap_16"
+        android:contentDescription="@string/content_description_backspace"
         android:src="@drawable/ic_backspace_gray" />
 </GridLayout>

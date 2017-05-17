@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ExpTracker</string>
-    <string name="server_client_id">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
+    <string name="server_client_id" translatable="false">1050041130959-pan1gn8t28ip917bi4fpehiv8uls3l9u.apps.googleusercontent.com</string>
 
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
@@ -46,8 +46,18 @@
     <string name="add_purchase_details_title">Add expenditure details</string>
     <string name="purchase_description_error">Error: there is no Description.</string>
     <string name="purchase_amount_error">Amount value is incorrect</string>
+
+    <!-- reports and empty lists -->
     <string name="action_download">Download report</string>
     <string name="empty_summary_list">You don\'t have any expenses for selected calendar period. Tap "Add expenditure" button for adding new expenses.</string>
     <string name="empty_report_alert">There is no expenses for creating report</string>
     <string name="no_expenses">There is no expenses yet</string>
+
+    <!-- content descriptions -->
+    <string name="content_description_add_new_expenses">Add new expenses</string>
+    <string name="content_description_view_cheque_attachment">View cheque attachment</string>
+    <string name="content_description_expenses_category_logo">Expenses category logo</string>
+    <string name="content_description_delete_attachment">Delete attachment</string>
+    <string name="content_description_backspace">Backspace</string>
+    <string name="content_description_delete">Delete</string>
 </resources>
