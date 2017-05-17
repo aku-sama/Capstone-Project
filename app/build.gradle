@@ -8,7 +8,7 @@ android {
             keyAlias 'ExpTracker'
             keyPassword 'parole1'
             storePassword 'parole1'
-            storeFile file('C:/Udacity/CapstoneProject/CapstoneAndroid/ExpTracker/expKeystore.jks')
+            storeFile file('/expKeystore.jks')
         }
     }
     compileSdkVersion 25
